@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateAuthInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  """The email address of the user. """
+  email: String!
+  firstName: String
+  lastName: String
+
+  """The password of the user."""
+  password: String!
+
+  """The name of the user."""
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createAuth(createAuthInput: CreateAuthInput!): Auth!
+  createUser(createUserInput: CreateUserInput!): User!
+}
+
+type Query {
+  sayHello: String!
+}
+
+type User {
+  """The unique identifier of the user."""
+  _id: ID!
+  createdAt: DateTime!
+
+  """The email address of the user. """
+  email: String!
+  firstName: String
+
+  """Whether the user is active or not."""
+  isActive: Boolean!
+  lastName: String
+  updatedAt: DateTime!
+
+  """The name of the user."""
+  username: String!
+}
