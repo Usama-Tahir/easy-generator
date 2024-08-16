@@ -1,14 +1,29 @@
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Context } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
-import { Auth } from './entities/auth.entity';
-import { CreateAuthInput } from './dto/create-auth.input';
+import { AuthPayload } from './entities/auth.entity';
+import { CreateUserInput } from 'src/user/dto/create-user.input';
+import { UseGuards } from '@nestjs/common';
+import { GqlLocalAuthGuard } from './guards/local-auth.guard';
+import { LoginInput } from './dto/login-input.dto';
 
-@Resolver(() => Auth)
+@Resolver(() => AuthPayload)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => Auth)
-  createAuth(@Args('createAuthInput') createAuthInput: CreateAuthInput) {
-    return this.authService.create(createAuthInput);
+  @Mutation(() => AuthPayload)
+  async signUp(
+    @Args('createUserInput') createUserInput: CreateUserInput,
+  ): Promise<AuthPayload> {
+    return this.authService.register(createUserInput);
+  }
+
+  @Mutation(() => AuthPayload)
+  @UseGuards(GqlLocalAuthGuard)
+  async login(@Args('loginInput') loginInput: LoginInput, @Context() context) {
+    const { accessToken } = await this.authService.login(context.req.user);
+    return {
+      accessToken,
+      user: context.req.user,
+    };
   }
 }

@@ -2,14 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Auth {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
+type AuthPayload {
+  """access token"""
+  accessToken: String!
 
-input CreateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """user object"""
+  user: User!
 }
 
 input CreateUserInput {
@@ -30,9 +28,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
-  createAuth(createAuthInput: CreateAuthInput!): Auth!
-  createUser(createUserInput: CreateUserInput!): User!
+  login(loginInput: LoginInput!): AuthPayload!
+  signUp(createUserInput: CreateUserInput!): AuthPayload!
 }
 
 type Query {
