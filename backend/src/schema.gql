@@ -40,6 +40,7 @@ type Mutation {
 
 type Query {
   sayHello: String!
+  whoAmI: User!
 }
 
 type User {

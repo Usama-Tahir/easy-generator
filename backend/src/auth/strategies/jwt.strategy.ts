@@ -21,19 +21,17 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: authConfiguration.authTokenSecret,
-      passReqToCallback: true,
     });
   }
 
-  async validate(payload: JwtPayload): Promise<any> {
+  async validate(payload: JwtPayload) {
     try {
-      console.log('payload', payload);
       const user = await this.userService.findOneByEmail(payload.sub);
       if (!user || !user.isActive) {
         throw new UnauthorizedException('User not found');
       }
 
-      user;
+      return user;
     } catch (error) {
       throw new UnauthorizedException('Invalid token payload');
     }

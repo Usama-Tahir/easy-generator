@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -14,6 +15,7 @@ import { DatabaseVariables } from './config/database.config';
 import { AppResolver } from './app.resolver';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { GqlJwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -54,6 +56,13 @@ import { UserModule } from './user/user.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver],
+  providers: [
+    AppService,
+    AppResolver,
+    {
+      provide: APP_GUARD,
+      useClass: GqlJwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

@@ -5,11 +5,13 @@ import { CreateUserInput } from 'src/user/dto/create-user.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlLocalAuthGuard } from './guards/local-auth.guard';
 import { LoginInput } from './dto/login-input.dto';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @Resolver(() => AuthPayload)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Mutation(() => AuthPayload)
   async signUp(
     @Args('createUserInput') createUserInput: CreateUserInput,
@@ -17,6 +19,7 @@ export class AuthResolver {
     return this.authService.register(createUserInput);
   }
 
+  @Public()
   @Mutation(() => AuthPayload)
   @UseGuards(GqlLocalAuthGuard)
   async login(@Args('loginInput') loginInput: LoginInput, @Context() context) {
