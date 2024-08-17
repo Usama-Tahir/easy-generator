@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import { GRAPHQL_URI } from "../constants";
-import useAuthToken from "../hooks/auth/useAuthToken";
+import { GRAPHQL_URI } from "../../constants";
+import useAuthToken from "../../hooks/auth/useAuthToken";
 
 // Helpers
 const formattedAuthHeader = (token: string) => (token ? `Bearer ${token}` : "");

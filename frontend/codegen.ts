@@ -14,22 +14,20 @@ if (!SCHEMA_URL) {
 const config: CodegenConfig = {
   overwrite: true,
   schema: SCHEMA_URL,
-  documents: ["src/**/*.ts", "src/**/*.tsx"],
+  documents: ["src/**/*.ts"],
+  config: {
+    nonOptionalTypename: true,
+  },
   generates: {
-    "src/graphql/@types/generated.ts": {
+    "src/graphql/@types/schema.ts": {
       plugins: [
         "typescript",
         "typescript-operations",
         "typescript-react-apollo",
       ],
-      config: {
-        withHooks: true,
-        withHOC: false,
-        withComponent: false,
-        nonOptionalTypename: true,
-        exportFragmentSpreadSubTypes: true,
-        dedupeFragments: true,
-      },
+    },
+    "src/graphql/@types/apollo-helpers.ts": {
+      plugins: ["typescript-apollo-client-helpers"],
     },
   },
 };

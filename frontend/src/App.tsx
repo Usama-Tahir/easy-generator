@@ -1,10 +1,14 @@
-import DataProvider from "./common/DataProvider";
+import { ChakraProvider } from "@chakra-ui/react";
+import DataProvider from "./common/providers/DataProvider";
+import Router from "./common/providers/Router";
 
 function App() {
   return (
-    <DataProvider>
-      <p>Welcome to the application.</p>
-    </DataProvider>
+    <ChakraProvider>
+      <DataProvider>
+        <Router />
+      </DataProvider>
+    </ChakraProvider>
   );
 }
 
