@@ -3,14 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Login from "../../../auth/pages/SignIn";
 import Signup from "../../../auth/pages/Signup";
+import Dashboard from "../../../Dashboard/pages/Landing";
 
-const Dashboard: React.FC = () => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  );
-};
 
 const Router: React.FC = () => {
   return (
