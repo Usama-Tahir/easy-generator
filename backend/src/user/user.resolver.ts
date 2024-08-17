@@ -5,7 +5,7 @@ import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 @Resolver(() => User)
 export class UserResolver {
   @Query(() => User)
-  whoAmI(@CurrentUser() user: User) {
+  currentUser(@CurrentUser() user: User) {
     return user;
   }
 }

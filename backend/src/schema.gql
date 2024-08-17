@@ -39,8 +39,8 @@ type Mutation {
 }
 
 type Query {
+  currentUser: User!
   sayHello: String!
-  whoAmI: User!
 }
 
 type User {
