@@ -33,8 +33,6 @@ import { GqlJwtAuthGuard } from './auth/guards/jwt-auth.guard';
         // JWT related variables
         AUTH_TOKEN_SECRET: Joi.string().required(),
         ACCESS_TOKEN_EXPIRATION: Joi.string().required(),
-        REFRESH_TOKEN_SECRET: Joi.string().required(),
-        REFRESH_TOKEN_EXPIRATION: Joi.string().required(),
       }),
     }),
     MongooseModule.forRootAsync({
