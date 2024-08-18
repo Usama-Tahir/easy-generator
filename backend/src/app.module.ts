@@ -41,6 +41,8 @@ import { GqlJwtAuthGuard } from './auth/guards/jwt-auth.guard';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService<DatabaseVariables>) => ({
         uri: configService.get('database', { infer: true }).uri,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
       }),
       inject: [ConfigService],
     }),
