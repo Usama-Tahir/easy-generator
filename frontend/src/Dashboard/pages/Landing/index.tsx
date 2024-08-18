@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import useAuthToken from "../../../common/hooks/auth/useAuthToken";
+import { routePaths } from "../../../common/constants";
 
 const Dashboard: React.FC = () => {
   const bgColor = useColorModeValue("gray.50", "gray.800");
@@ -20,7 +21,7 @@ const Dashboard: React.FC = () => {
 
   const handleLogout = React.useCallback(() => {
     removeAuthToken();
-    navigate("/auth/login");
+    navigate(routePaths.LOGIN);
   }, [navigate]);
 
   return (

@@ -12,6 +12,7 @@ import { SignupFormData } from "../types";
 import useAuthToken from "../../../../common/hooks/auth/useAuthToken";
 import useGraphQLErrorParser from "../../../../common/hooks/auth/useGraphQLErrorParser";
 import React from "react";
+import { routePaths } from "../../../../common/constants";
 
 const useSignupForm = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const useSignupForm = () => {
         },
       },
     });
-    navigate("/");
+    navigate(routePaths.HOME);
   };
 
   return { form, onSubmit, loading, fromErrors: errorMessagesArr };

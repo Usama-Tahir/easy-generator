@@ -13,4 +13,13 @@ const cookieKeys = {
 
 const authCookieExpiry = VITE_APP_AUTH_TOKEN_COOKIE_EXPIRES ?? "1h";
 
-export { GRAPHQL_URI, cookieKeys, authCookieExpiry };
+const routePaths = {
+  HOME: "/",
+  LOGIN: "/auth/login",
+  SIGN_UP: "/auth/sign-up",
+
+};
+
+
+export { GRAPHQL_URI, cookieKeys, authCookieExpiry, routePaths };
+

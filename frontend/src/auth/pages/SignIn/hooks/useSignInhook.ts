@@ -12,6 +12,7 @@ import {
 import { SignInFormData } from "../types";
 import useAuthToken from "../../../../common/hooks/auth/useAuthToken";
 import useGraphQLErrorParser from "../../../../common/hooks/auth/useGraphQLErrorParser";
+import { routePaths } from "../../../../common/constants";
 
 const useSignInForm = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const useSignInForm = () => {
         },
       },
     });
-    navigate("/");
+    navigate(routePaths.HOME);
   };
 
   return { form, onSubmit, loading, fromErrors: errorMessagesArr };

@@ -6,6 +6,7 @@ import FormField from "../../../common/components/FormField";
 import { SignupFormData } from "./types";
 import { Link as RouterLink } from "react-router-dom";
 import { ToastNotification } from "../../../common/components/Toast";
+import { routePaths } from "../../../common/constants";
 
 export const SignupForm: React.FC = () => {
   const { form, onSubmit, loading, fromErrors } = useSignupForm();
@@ -77,7 +78,7 @@ export const SignupForm: React.FC = () => {
         </form>
         <Text mt={4} textAlign="center">
           Already have an account?
-          <Link as={RouterLink} to="/auth/login" color="blue.500">
+          <Link as={RouterLink} to={routePaths.LOGIN} color="blue.500">
             Log in
           </Link>
         </Text>
